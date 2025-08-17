@@ -1,3 +1,4 @@
 # tecweb
 Repositorio para entregar proyectos y practicas de la materia de Desarrollo de Aplicaciones Web
-Matricul: 202256177
+Matricula: 202256177
+Nombre: Christian Isaac Vazquez Loeza
