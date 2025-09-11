@@ -86,7 +86,41 @@
         print_r($z);
         echo '<br>';
 
-        
+        //Ejercicio 4
+        function Mostrar()
+        {
+            global $a, $b, $c, $z;
+            echo '<br>';
+            unset($a, $b, $c);
+            $a = "PHP5";
+            echo $a;
+            echo '<br>';
+
+            $z[] = &$a;
+            var_dump($z); 
+            echo '<br>';
+
+            $b = "5a version de PHP";
+            echo $b; 
+            echo '<br>';
+
+            @$c = $b*10;
+            echo $c; 
+            echo '<br>';
+
+            $a .= $b;
+            echo $a; 
+            echo '<br>';
+
+            @$b *= $c;
+            echo $b;
+            echo '<br>'; 
+
+            $z[0] = "MySQL";
+            print_r($z);
+            echo '<br>';
+        }
+        Mostrar();
     ?>
 </body>
 </html>
