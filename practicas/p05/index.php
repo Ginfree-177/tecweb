@@ -121,6 +121,18 @@
             echo '<br>';
         }
         Mostrar();
+
+        //Ejercicio 5
+        echo '<br>';
+        $a = "7 personas";
+        $b = (integer) $a;
+        $a = "9E3";
+        $c = (double) $a;
+        echo 'El valor de $a es: '.$a;
+        echo '<br>';
+        echo 'El valor de $b es: '.$b;
+        echo '<br>';
+        echo 'El valor de $c es: '.$c;
     ?>
 </body>
 </html>
