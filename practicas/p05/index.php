@@ -53,8 +53,40 @@
         echo $a;
         echo '<br>';
         echo $b;
-        //$c=$b * 10;
-        //@$c=$b * 10; (para evitar warnings)
+        echo '<br>';
+
+        //Ejercicio 3
+        echo '<br>';
+        unset($a, $b, $c);
+        $a = "PHP5";
+        echo $a;
+        echo '<br>';
+
+        $z[] = &$a;
+        var_dump($z); 
+        echo '<br>';
+
+        $b = "5a version de PHP";
+        echo $b; 
+        echo '<br>';
+
+        @$c = $b*10;
+        echo $c; 
+        echo '<br>';
+
+        $a .= $b;
+        echo $a; 
+        echo '<br>';
+
+        @$b *= $c;
+        echo $b;
+        echo '<br>'; 
+
+        $z[0] = "MySQL";
+        print_r($z);
+        echo '<br>';
+
+        
     ?>
 </body>
 </html>
