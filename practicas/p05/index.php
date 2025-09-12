@@ -145,6 +145,13 @@
         echo '<br>';
         echo 'El valor de $c es: '.var_export($c, true).'<br>';
         echo 'El valor de $e es: '.var_export($e, true).'<br>';
+
+        //Ejercicio 7
+        echo '<br>';
+        echo "Versión de PHP: " . phpversion() . "<br>";
+        echo "Versio de Apache: " . $_SERVER['SERVER_SOFTWARE'] . "<br>";
+        echo "Nombre del sistema operativo: " . PHP_OS . "<br>";
+        echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
     ?>
 </body>
 </html>
