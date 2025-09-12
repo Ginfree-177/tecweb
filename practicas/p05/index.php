@@ -128,11 +128,23 @@
         $b = (integer) $a;
         $a = "9E3";
         $c = (double) $a;
-        echo 'El valor de $a es: '.$a;
+        echo 'El valor de $a es: '.$a.'<br>';
+        echo 'El valor de $b es: '.$b.'<br>';
+        echo 'El valor de $c es: '.$c.'<br>';
+
+        //Ejercicio 6
         echo '<br>';
-        echo 'El valor de $b es: '.$b;
+        $a = "0";
+        $b = "TRUE";
+        $c = FALSE;
+        $d = ($a OR $b);
+        $e = ($a AND $c);
+        $f = ($a XOR $b);
+        $g = array($a, $b, $c, $d, $e, $f);
+        var_dump($g);
         echo '<br>';
-        echo 'El valor de $c es: '.$c;
+        echo 'El valor de $c es: '.var_export($c, true).'<br>';
+        echo 'El valor de $e es: '.var_export($e, true).'<br>';
     ?>
 </body>
 </html>
