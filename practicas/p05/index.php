@@ -53,8 +53,105 @@
         echo $a;
         echo '<br>';
         echo $b;
-        //$c=$b * 10;
-        //@$c=$b * 10; (para evitar warnings)
+        echo '<br>';
+
+        //Ejercicio 3
+        echo '<br>';
+        unset($a, $b, $c);
+        $a = "PHP5";
+        echo $a;
+        echo '<br>';
+
+        $z[] = &$a;
+        var_dump($z); 
+        echo '<br>';
+
+        $b = "5a version de PHP";
+        echo $b; 
+        echo '<br>';
+
+        @$c = $b*10;
+        echo $c; 
+        echo '<br>';
+
+        $a .= $b;
+        echo $a; 
+        echo '<br>';
+
+        @$b *= $c;
+        echo $b;
+        echo '<br>'; 
+
+        $z[0] = "MySQL";
+        print_r($z);
+        echo '<br>';
+
+        //Ejercicio 4
+        function Mostrar()
+        {
+            global $a, $b, $c, $z;
+            echo '<br>';
+            unset($a, $b, $c);
+            $a = "PHP5";
+            echo $a;
+            echo '<br>';
+
+            $z[] = &$a;
+            var_dump($z); 
+            echo '<br>';
+
+            $b = "5a version de PHP";
+            echo $b; 
+            echo '<br>';
+
+            @$c = $b*10;
+            echo $c; 
+            echo '<br>';
+
+            $a .= $b;
+            echo $a; 
+            echo '<br>';
+
+            @$b *= $c;
+            echo $b;
+            echo '<br>'; 
+
+            $z[0] = "MySQL";
+            print_r($z);
+            echo '<br>';
+        }
+        Mostrar();
+
+        //Ejercicio 5
+        echo '<br>';
+        $a = "7 personas";
+        $b = (integer) $a;
+        $a = "9E3";
+        $c = (double) $a;
+        echo 'El valor de $a es: '.$a.'<br>';
+        echo 'El valor de $b es: '.$b.'<br>';
+        echo 'El valor de $c es: '.$c.'<br>';
+
+        //Ejercicio 6
+        echo '<br>';
+        $a = "0";
+        $b = "TRUE";
+        $c = FALSE;
+        $d = ($a OR $b);
+        $e = ($a AND $c);
+        $f = ($a XOR $b);
+        $g = array($a, $b, $c, $d, $e, $f);
+        var_dump($g);
+        echo '<br>';
+        echo 'El valor de $c es: '.var_export($c, true).'<br>';
+        echo 'El valor de $e es: '.var_export($e, true).'<br>';
+
+        //Ejercicio 7
+        echo '<br>';
+        echo "Versión de PHP: " . phpversion() . "<br>";
+        echo "Versio de Apache: " . $_SERVER['SERVER_SOFTWARE'] . "<br>";
+        echo "Nombre del sistema operativo: " . PHP_OS . "<br>";
+        echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
     ?>
 </body>
 </html>
