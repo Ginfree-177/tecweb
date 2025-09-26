@@ -1,42 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Práctica 4</title>
+    <title>Práctica 7</title>
 </head>
 <body>
     <h2>Ejercicio 1</h2>
-    <p>Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
-    <?php
-        if(isset($_GET['numero']))
-        {
-            $num = $_GET['numero'];
-            if ($num%5==0 && $num%7==0)
-            {
-                echo '<h3>R= El número '.$num.' SÍ es múltiplo de 5 y 7.</h3>';
-            }
-            else
-            {
-                echo '<h3>R= El número '.$num.' NO es múltiplo de 5 y 7.</h3>';
-            }
-        }
-    ?>
 
-    <h2>Ejemplo de POST</h2>
-    <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
-        Name: <input type="text" name="name"><br>
-        E-mail: <input type="text" name="email"><br>
-        <input type="submit">
+    <!-- Formulario -->
+    <form action="index.php" method="GET">
+        <label for="numero">Introduce un número:</label>
+        <input type="number" name="numero">
+        <input type="submit" value="Calcular">
     </form>
+
     <br>
     <?php
-        if(isset($_POST["name"]) && isset($_POST["email"]))
-        {
-            echo $_POST["name"];
-            echo '<br>';
-            echo $_POST["email"];
-        }
+    // Incluimos las funciones
+    include("src/funciones.php");
+
+    // Verificamos si el usuario envió un número
+    if (isset($_GET['numero'])) {
+        $num = $_GET['numero'];
+        echo "<h3>R= " . EsMultiplo5y7($num) . "</h3>";
+    }
     ?>
 </body>
 </html>
