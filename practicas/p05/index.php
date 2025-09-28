@@ -140,7 +140,7 @@
         $d = ($a OR $b);
         $e = ($a AND $c);
         $f = ($a XOR $b);
-        $g = array($a, $b, $c, $d, $e, $f);
+        $g = array($a, $b, $c, $dz, $e, $f);
         var_dump($g);
         echo '<br>';
         echo 'El valor de $c es: '.var_export($c, true).'<br>';
@@ -153,5 +153,9 @@
         echo "Nombre del sistema operativo: " . PHP_OS . "<br>";
         echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
     ?>
+    <br>
+    <div style="text-align: right">
+        <img src="images/valid-xhtml11.png" alt="Validacion de xhtml 1.1">
+    </div>
 </body>
 </html>
