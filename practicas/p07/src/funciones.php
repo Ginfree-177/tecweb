@@ -123,8 +123,119 @@ function FormularioPersona()
     }
 }
 
+function ParqueVehicular() {
+    // Definimos el arreglo en duro con 15 autos
+    $vehiculos = [
+        "ABC1234" => [
+            "Auto" => [
+                "marca" => "HONDA",
+                "modelo" => 2020,
+                "tipo"   => "camioneta"
+            ],
+            "Propietario" => [
+                "nombre" => "Alfonso Esparza",
+                "ciudad" => "Puebla, Pue.",
+                "direccion" => "C.U., Jardines de San Manuel"
+            ]
+        ],
+        "XYZ5678" => [
+            "Auto" => [
+                "marca" => "MAZDA",
+                "modelo" => 2019,
+                "tipo"   => "sedan"
+            ],
+            "Propietario" => [
+                "nombre" => "Ma. del Consuelo Molina",
+                "ciudad" => "Puebla, Pue.",
+                "direccion" => "97 Oriente"
+            ]
+        ],
+        "JKL2345" => [
+            "Auto" => [
+                "marca" => "TOYOTA",
+                "modelo" => 2021,
+                "tipo"   => "hachback"
+            ],
+            "Propietario" => [
+                "nombre" => "Luis Hernández",
+                "ciudad" => "CDMX",
+                "direccion" => "Av. Insurgentes Sur 100"
+            ]
+        ],
+        //Agregamos más autos hasta tener 15
+        "LMN3456" => [
+            "Auto" => ["marca" => "FORD", "modelo" => 2018, "tipo" => "sedan"],
+            "Propietario" => ["nombre" => "Carla Romero", "ciudad" => "Guadalajara, Jal.", "direccion" => "Col. Americana"]
+        ],
+        "OPQ4567" => [
+            "Auto" => ["marca" => "CHEVROLET", "modelo" => 2022, "tipo" => "camioneta"],
+            "Propietario" => ["nombre" => "Pedro Sánchez", "ciudad" => "Monterrey, N.L.", "direccion" => "Av. Constitución 123"]
+        ],
+        "RST5678" => [
+            "Auto" => ["marca" => "NISSAN", "modelo" => 2017, "tipo" => "sedan"],
+            "Propietario" => ["nombre" => "Ana Torres", "ciudad" => "Querétaro, Qro.", "direccion" => "Calle Juárez 45"]
+        ],
+        "UVW6789" => [
+            "Auto" => ["marca" => "KIA", "modelo" => 2020, "tipo" => "camioneta"],
+            "Propietario" => ["nombre" => "Miguel López", "ciudad" => "Mérida, Yuc.", "direccion" => "Centro Histórico"]
+        ],
+        "DEF2345" => [
+            "Auto" => ["marca" => "HYUNDAI", "modelo" => 2021, "tipo" => "hachback"],
+            "Propietario" => ["nombre" => "Daniela Fernández", "ciudad" => "León, Gto.", "direccion" => "Col. Industrial"]
+        ],
+        "GHI3456" => [
+            "Auto" => ["marca" => "VOLKSWAGEN", "modelo" => 2019, "tipo" => "sedan"],
+            "Propietario" => ["nombre" => "José Pérez", "ciudad" => "Toluca, Edo. Méx.", "direccion" => "Col. Centro"]
+        ],
+        "JKM4567" => [
+            "Auto" => ["marca" => "BMW", "modelo" => 2023, "tipo" => "sedan"],
+            "Propietario" => ["nombre" => "Marta Ruiz", "ciudad" => "CDMX", "direccion" => "Polanco"]
+        ],
+        "NOP5678" => [
+            "Auto" => ["marca" => "MERCEDES", "modelo" => 2020, "tipo" => "camioneta"],
+            "Propietario" => ["nombre" => "Roberto Díaz", "ciudad" => "Cancún, Q. Roo", "direccion" => "Av. Bonampak"]
+        ],
+        "QRS6789" => [
+            "Auto" => ["marca" => "AUDI", "modelo" => 2018, "tipo" => "sedan"],
+            "Propietario" => ["nombre" => "Cecilia Gómez", "ciudad" => "Puebla, Pue.", "direccion" => "Col. La Paz"]
+        ],
+        "TUV7890" => [
+            "Auto" => ["marca" => "TESLA", "modelo" => 2022, "tipo" => "sedan"],
+            "Propietario" => ["nombre" => "Andrés Flores", "ciudad" => "CDMX", "direccion" => "Santa Fe"]
+        ],
+        "WXY8901" => [
+            "Auto" => ["marca" => "PEUGEOT", "modelo" => 2019, "tipo" => "hachback"],
+            "Propietario" => ["nombre" => "Laura Morales", "ciudad" => "Querétaro, Qro.", "direccion" => "Col. Alamos"]
+        ],
+        "ZAB9012" => [
+            "Auto" => ["marca" => "FIAT", "modelo" => 2017, "tipo" => "hachback"],
+            "Propietario" => ["nombre" => "Fernando Castro", "ciudad" => "Monterrey, N.L.", "direccion" => "San Pedro Garza García"]
+        ],
+    ];
 
-// Al final de funciones.php
+    return $vehiculos;
+}
+
+// Función para mostrar todos los autos
+function MostrarTodos() {
+    $vehiculos = ParqueVehicular();
+    echo "<pre>";
+    print_r($vehiculos);
+    echo "</pre>";
+}
+
+// Función para buscar por matrícula
+function BuscarPorMatricula($matricula) {
+    $vehiculos = ParqueVehicular();
+    if (isset($vehiculos[$matricula])) {
+        echo "<pre>";
+        print_r($vehiculos[$matricula]);
+        echo "</pre>";
+    } else {
+        echo "<p>No se encontró la matrícula $matricula</p>";
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     FormularioPersona();
 }
