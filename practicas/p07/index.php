@@ -9,9 +9,9 @@
     <h2>Ejercicio 1</h2>
 
     <!-- Formulario -->
-    <form action="index.php" method="GET">
+    <form action="index.php" method="get">
         <label for="numero">Introduce un número:</label>
-        <input type="number" name="numero">
+        <input type="number" name="numero" id="numero" required>
         <input type="submit" value="Calcular">
     </form>
 
@@ -25,6 +25,27 @@
         $num = $_GET['numero'];
         echo "<h3>R= " . EsMultiplo5y7($num) . "</h3>";
     }
+    ?>
+    
+    <h2>Ejercicio 2</h2>
+    <?php
+    if (isset($_GET['numero'])) {
+        MatrizMx3();
+       }  
+    ?>
+
+    <h2>Ejercicio 3</h2>
+    <p>Inciso 1</p>
+    <?php
+      if (isset($_GET['numero'])) {
+        EnteroConWhile($_GET['numero']);
+       }
+    ?> 
+    <p>Inciso 2</p>
+    <?php
+      if (isset($_GET['numero'])) {
+        EnteroConDoWhile($_GET['numero']);
+       }
     ?>
 </body>
 </html>
