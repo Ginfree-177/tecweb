@@ -27,14 +27,14 @@
     }
     ?>
     
-    <h2>Ejercicio 2</h2>
+    <h2>Ejercicio 2</h2> <!-- Ejercicio 2 -->
     <?php
     if (isset($_GET['numero'])) {
         MatrizMx3();
        }  
     ?>
 
-    <h2>Ejercicio 3</h2>
+    <h2>Ejercicio 3</h2> <!-- Ejercicio 3 -->
     <p>Inciso 1</p>
     <?php
       if (isset($_GET['numero'])) {
@@ -47,5 +47,12 @@
         EnteroConDoWhile($_GET['numero']);
        }
     ?>
+    <h2>Ejercicio 4</h2> <!-- Ejercicio 4 -->
+    <p>Tabla del codigo ASCII impresa con foreach</p>
+    <?php
+      if (isset($_GET['numero'])) {
+        Abcedario();
+       }
+    ?> 
 </body>
 </html>

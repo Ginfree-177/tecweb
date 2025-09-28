@@ -67,4 +67,30 @@ function EnteroConDoWhile ($numero)
     }while($bandera);
     
 }
+
+function Abcedario()
+{
+    $minusculas = array();
+
+    for($i=97;$i<=122;$i++)
+    {
+        $minusculas[$i]=chr($i);
+    }
+
+        echo '<table style="width:10%">';   
+        echo '<tr>';
+        echo '<td>' . "ASCII" . '</td>';
+        echo '<td>' . "Valor" . '</td>';
+        echo '</tr>';
+
+        foreach ($minusculas as $indice => $valor) {
+            echo '<tr>';
+            echo '<td>' . $indice . '</td>';
+            echo '<td>' . $valor . '</td>';
+            echo '</tr>';
+        }
+
+        echo '</table>';
+
+}
 ?>
