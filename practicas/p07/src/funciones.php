@@ -93,4 +93,40 @@ function Abcedario()
         echo '</table>';
 
 }
+
+function FormularioPersona()
+{
+    if(isset($_POST["sexo"]) && isset($_POST["edad"])) 
+    {
+        $sexo = $_POST["sexo"];
+        $edad = $_POST["edad"];
+            
+        if($sexo == "Femenino" || $sexo == "femenino")
+        {
+            if(($edad >= 18) && ($edad <= 35))
+            {
+                echo "<p>Bienvenida, usted está en el rango de edad permitido.</p>";
+            } 
+            else 
+            {
+                echo '<h3>No permitido para el rango de edad</h3>';
+            }
+        } 
+        else
+        {
+            echo "<p>Sexo no permitido</p>";
+        }
+    } 
+    else 
+    {
+        echo '<h3>Campos incompletos</h3>';
+    }
+}
+
+
+// Al final de funciones.php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    FormularioPersona();
+}
+
 ?>

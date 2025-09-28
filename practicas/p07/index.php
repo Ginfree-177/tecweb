@@ -6,7 +6,7 @@
     <title>Práctica 7</title>
 </head>
 <body>
-    <h2>Ejercicio 1</h2>
+    <h2>Ejercicio 1</h2> <!-- Ejercicio 1 -->
 
     <!-- Formulario -->
     <form action="index.php" method="get">
@@ -54,5 +54,16 @@
         Abcedario();
        }
     ?> 
+
+    <h2>Ejercicio 5</h2> <!-- Ejercicio 5 -->
+
+    <!-- Formulario -->
+    <form action="./src/funciones.php" method="post">
+        <li>Sexo: <input type="text" name="sexo"></li>
+        <br>
+        <li>Edad: <input type="number" name="edad" id="edad"></li>
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
 </body>
 </html>
