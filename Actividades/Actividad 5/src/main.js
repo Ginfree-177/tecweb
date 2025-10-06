@@ -143,3 +143,119 @@ function condiciones()
     default:div1.innerHTML = '<p>debe ingresar un valor comprendido entre 1 y 5.</p>'
     }
 }
+
+function color_fondo()
+{
+    var col;
+    col = prompt('Ingresa el color con que quierar pintar el fondo de la ventana (rojo, verde, azul)' , '' );
+    switch (col) 
+    {
+        case 'rojo': document.bgColor='#ff0000';
+        break;
+
+        case 'verde': document.bgColor='#00ff00';
+        break;
+
+        case 'azul': document.bgColor='#0000ff';
+        break;
+    }
+}
+
+function mientras()
+{
+    let x = 1;
+    let resultado = ""; // Aquí acumulamos el texto
+
+    while (x <= 100) {
+        resultado += x + "<br>"; // Agregamos cada número y salto de línea
+        x++;
+    }
+
+    // Mostramos todo el resultado en el div
+    const div = document.getElementById("mensaje6");
+    div.innerHTML = resultado;
+}
+
+function suma()
+{
+    var x=1;
+    var suma=0;
+    var valor;
+    while (x<=5)
+    {
+        valor = prompt('Ingresa un valor:', '');
+        valor = parseInt(valor);
+        suma = suma+valor;
+        x = x+1;
+    }
+    var div1 = document.getElementById('resultado3');
+    div1.innerHTML = '<p>La suma de los valores es '+suma+'</p>';
+}
+
+function hacer_mientras()
+{
+    var valor;
+    do{
+        valor = prompt('Ingresa un valor entre 0 y 999:', '');
+        valor = parseInt(valor);
+        var div1 = document.getElementById('mensaje7');
+        var div2 = document.getElementById('mensaje8');
+        div1.innerHTML = '<p>El valor '+valor+' tiene </p>';
+        if (valor<10)
+            div2.innerHTML = '<p>Tiene 1 dígitos </p>';
+        else
+        if (valor<100) 
+        {
+            div2.innerHTML = '<p>Tiene 2 dígitos </p>';
+        }
+        else 
+        {
+            div2.innerHTML = '<p>Tiene 2 dígitos </p>';
+        }
+    }while(valor!=0);
+}
+
+function ciclo_para()
+{
+    var f;
+    var resultado;
+    var div = document.getElementById('mensaje9');
+    for(f=1; f<=10; f++)
+    {
+        resultado += f+' <br>';
+    }
+    div.innerHTML = resultado;
+}
+
+function mensajes1()
+{
+    var div = document.getElementById('mensaje10');
+    div.innerHTML = `
+        Cuidado<br>
+        Ingresa tu documento correctamente<br>
+        Cuidado<br>
+        Ingresa tu documento correctamente<br>
+        Cuidado<br>
+        Ingresa tu documento correctamente<br>
+    `;
+}
+function mensajes2()
+{
+    var div = document.getElementById('mensaje11');
+    div.innerHTML = `
+        Cuidado<br>
+        Ingresa tu documento correctamente<br>
+        `;
+
+    var div = document.getElementById('mensaje12');
+    div.innerHTML = `
+        Cuidado<br>
+        Ingresa tu documento correctamente<br>
+        `;
+
+    var div = document.getElementById('mensaje13');
+    div.innerHTML = `
+        Cuidado<br>
+        Ingresa tu documento correctamente<br>
+        `;
+}
