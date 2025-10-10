@@ -7,6 +7,21 @@
 </head>
 <body>
     <h1>Registro de Producto Nuevos</h1>
-    
+    <form id="formulario_productos" action="http://localhost/tecweb/practicas/p09/set_productoV2.php" method="post"> <!--localhost en Pc y localhost:8080 en laptop-->
+        <fieldset>
+            <legend>Ingrese la informacion del producto a registrar</legend>
+            <ul>
+            <li>Nombre:<input type="text" name="nombre" required></li>
+            <li>Marca:<input type="text" name="marca" required></li>
+            <li>Modelo:<input type="text" name="modelo" required></li>
+            <li>Precio:<input type="number" name="precio" step="0.01" min="0" required></li>
+            <li>Detalles:<input type="text" name="detalles" required></li>
+            <li>Unidades:<input type="number" name="unidades" min="0" required></li>
+            <li>Imagen:<input type="text" name="imagen" required></li>
+            </ul>
+        </fieldset>
+        <p><input type="submit" value="Enviar">
+        <input type="reset" value="Limpiar"></p>
+    </form>
 </body>
 </html>
