@@ -36,7 +36,7 @@ $row = $result->fetch_assoc();
 
 if ($row['total'] > 0) {
     // Ya existe un producto con esos datos
-    echo "<h3>❌ El producto con nombre <strong>$nombre</strong>, marca <strong>$marca</strong> y modelo <strong>$modelo</strong> ya existe.</h3>";
+    echo "<h3>El producto con nombre <strong>$nombre</strong>, marca <strong>$marca</strong> y modelo <strong>$modelo</strong> ya existe.</h3>";
     echo "<p>Verifique los datos e intente nuevamente.</p>";
 } else {
     // --- Insertar el nuevo producto ---
@@ -44,11 +44,11 @@ if ($row['total'] > 0) {
     $imagen   = $link->real_escape_string($imagen);
 
     $sql_insert = "INSERT INTO productos 
-        (id, nombre, marca, modelo, precio, detalles, unidades, imagen)
-        VALUES (NULL, '$nombre', '$marca', '$modelo', $precio, '$detalles', $unidades, '$imagen')";
+        (id, nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado) /*column names*/
+        VALUES (NULL, '$nombre', '$marca', '$modelo', $precio, '$detalles', $unidades, '$imagen', 0)";
 
     if ($link->query($sql_insert)) {
-        echo "<h3>✅ Producto insertado correctamente.</h3>";
+        echo "<h3>Producto insertado correctamente.</h3>";
         echo "<p><strong>ID generado:</strong> " . $link->insert_id . "</p>";
         echo "<ul>
                 <li><strong>Nombre:</strong> $nombre</li>
@@ -60,7 +60,7 @@ if ($row['total'] > 0) {
                 <li><strong>Imagen:</strong> $imagen</li>
               </ul>";
     } else {
-        echo "<h3>❌ Error al insertar el producto.</h3>";
+        echo "<h3>Error al insertar el producto.</h3>";
         echo "<p>MySQL dice: " . $link->error . "</p>";
     }
 }
