@@ -14,11 +14,11 @@
         function validarFormulario(event) {
             event.preventDefault(); // Evita envío inmediato
 
-            const nombre = document.getElementsByName("nombre")[0].value.trim();
+            const nombre = document.getElementsByName("nombre")[0].value;
             const marca = document.getElementsByName("marca")[0].value;
-            const modelo = document.getElementsByName("modelo")[0].value.trim();
+            const modelo = document.getElementsByName("modelo")[0].value;
             const precio = parseFloat(document.getElementsByName("precio")[0].value);
-            const detalles = document.getElementsByName("detalles")[0].value.trim();
+            const detalles = document.getElementsByName("detalles")[0].value;
             const unidades = parseInt(document.getElementsByName("unidades")[0].value);
             let imagen = document.getElementsByName("imagen")[0].value.trim();
             const mensaje = document.getElementById("mensaje");
@@ -78,7 +78,7 @@
                 return false;
             }
             if (unidades < 0) {
-                mensaje.textContent = "El número de unidades no puede ser negativo.";
+                mensaje.textContent = "El número de unidades debe ser mayor o igual a 0";
                 return false;
             }
 
@@ -99,7 +99,7 @@
     <h1>Registro de Productos Nuevos</h1>
 
     <form id="formulario_productos" 
-          action="http://localhost/tecweb/practicas/p09/set_productoV2.php" 
+          action="http://localhost/tecweb/practicas/p10/set_productoV2.php" 
           method="post"
           onsubmit="validarFormulario(event)">
         <fieldset>
@@ -117,10 +117,10 @@
                     </select>
                 </li>
                 <li>Modelo: <input type="text" name="modelo"></li>
-                <li>Precio: <input type="number" step="0.01" name="precio"></li>
+                <li>Precio: <input type="number" name="precio"></li>
                 <li>Detalles: <input type="text" name="detalles"></li>
                 <li>Unidades: <input type="number" name="unidades"></li>
-                <li>Imagen: <input type="text" name="imagen" placeholder="img/producto.png"></li>
+                <li>Imagen: <input type="text" name="imagen"></li>
             </ul>
         </fieldset>
         <p>
