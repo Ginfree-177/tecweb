@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Producto</title>
+    <style>
+        #mensaje {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+        // --- Función para obtener el parámetro 'id' de la URL ---
+        function getParametro(nombre) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(nombre);
+        }
+
+        // --- Cargar datos del producto desde el servidor ---
+        async function cargarProducto() {
+            const id = getParametro("id");
+            if (!id) return;
+
+            try {
+                const respuesta = await fetch(`get_producto.php?id=${id}`);
+                const producto = await respuesta.json();
+
+                if (producto && producto.id) {
+                    document.getElementsByName("id")[0].value = producto.id;
+                    document.getElementsByName("nombre")[0].value = producto.nombre;
+                    document.getElementsByName("marca")[0].value = producto.marca;
+                    document.getElementsByName("modelo")[0].value = producto.modelo;
+                    document.getElementsByName("precio")[0].value = producto.precio;
+                    document.getElementsByName("detalles")[0].value = producto.detalles;
+                    document.getElementsByName("unidades")[0].value = producto.unidades;
+                    document.getElementsByName("imagen")[0].value = producto.imagen;
+                } else {
+                    document.getElementById("mensaje").textContent = "No se encontró el producto.";
+                }
+            } catch (error) {
+                document.getElementById("mensaje").textContent = "Error al cargar el producto.";
+            }
+        }
+
+        // --- Validación del formulario (misma lógica que la versión original) ---
+        function validarFormulario(event) {
+            event.preventDefault(); // Evita envío inmediato
+
+            const nombre = document.getElementsByName("nombre")[0].value.trim();
+            const marca = document.getElementsByName("marca")[0].value;
+            const modelo = document.getElementsByName("modelo")[0].value.trim();
+            const precio = parseFloat(document.getElementsByName("precio")[0].value);
+            const detalles = document.getElementsByName("detalles")[0].value.trim();
+            const unidades = parseInt(document.getElementsByName("unidades")[0].value);
+            let imagen = document.getElementsByName("imagen")[0].value.trim();
+            const mensaje = document.getElementById("mensaje");
+
+            mensaje.textContent = ""; // Limpia mensajes previos
+
+            if (nombre === "") return mensaje.textContent = "El campo 'Nombre' es obligatorio.";
+            if (nombre.length > 100) return mensaje.textContent = "El campo 'Nombre' no puede tener más de 100 caracteres.";
+            if (marca === "") return mensaje.textContent = "Debe seleccionar una 'Marca'.";
+            if (modelo === "") return mensaje.textContent = "El campo 'Modelo' es obligatorio.";
+            if (modelo.length > 25) return mensaje.textContent = "El campo 'Modelo' no puede tener más de 25 caracteres.";
+            if (!/^[A-Za-z0-9]+$/.test(modelo)) return mensaje.textContent = "El campo 'Modelo' solo puede contener caracteres alfanuméricos.";
+            if (isNaN(precio)) return mensaje.textContent = "El campo 'Precio' es obligatorio.";
+            if (precio <= 99.99) return mensaje.textContent = "El precio debe ser mayor a 99.99.";
+            if (detalles.length > 250) return mensaje.textContent = "El campo 'Detalles' no puede tener más de 250 caracteres.";
+            if (isNaN(unidades)) return mensaje.textContent = "El campo 'Unidades' es obligatorio.";
+            if (unidades < 0) return mensaje.textContent = "El número de unidades debe ser mayor o igual a 0";
+            if (imagen === "") imagen = "img/default.png";
+
+            mensaje.style.color = "green";
+            mensaje.textContent = "Formulario válido. Enviando datos...";
+            document.getElementsByName("imagen")[0].value = imagen;
+            document.getElementById("formulario_productos").submit();
+        }
+
+        window.onload = cargarProducto;
+    </script>
+</head>
+<body>
+    <h1>Modificar Producto</h1>
+
+    <form id="formulario_productos"
+          action="update_producto.php"
+          method="post"
+          onsubmit="validarFormulario(event)">
+        <fieldset>
+            <legend>Datos del producto</legend>
+            <input type="hidden" name="id">
+
+            <ul>
+                <li>Nombre: <input type="text" name="nombre"></li>
+                <li>Marca: 
+                    <select name="marca">
+                        <option value="">--Seleccione una marca--</option>
+                        <option value="MSI">MSI</option>
+                        <option value="XPG">XPG</option>
+                        <option value="Kingston">Kingston</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Gigabyte">Gigabyte</option>
+                    </select>
+                </li>
+                <li>Modelo: <input type="text" name="modelo"></li>
+                <li>Precio: <input type="number" step="0.01" name="precio"></li>
+                <li>Detalles: <input type="text" name="detalles"></li>
+                <li>Unidades: <input type="number" name="unidades"></li>
+                <li>Imagen: <input type="text" name="imagen"></li>
+            </ul>
+        </fieldset>
+        <p>
+            <input type="submit" value="Guardar Cambios">
+            <input type="reset" value="Restablecer">
+        </p>
+    </form>
+
+    <p id="mensaje"></p>
+</body>
+</html>
