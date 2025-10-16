@@ -60,6 +60,15 @@ function buscarID(e) {
     client.send("id="+id);
 }
 
+//Funcion buscar producto
+function buscarProducto(e)
+{
+    e.preventDefault();
+
+    // SE OBTIENE EL ID A BUSCAR
+    var id = document.getElementById('nombre').value;
+}
+
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
     e.preventDefault();
