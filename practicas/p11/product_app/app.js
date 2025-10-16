@@ -61,13 +61,69 @@ function buscarID(e) {
 }
 
 //Funcion buscar producto
-function buscarProducto(e)
-{
+function buscarProducto(e) {
     e.preventDefault();
 
-    // SE OBTIENE EL ID A BUSCAR
-    var id = document.getElementById('nombre').value;
+    // SE OBTIENE EL TEXTO A BUSCAR
+    var texto = document.getElementById('nombre').value.trim();
+
+    if (texto === '') {
+        var texto = document.getElementById('marca').value.trim();
+        if(texto === '')
+        {
+            var texto = document.getElementById('detalles').value.trim();
+            if(texto == '')
+            {
+                alert('Por favor, ingrese parte del nombre, marca o detalles.');
+                return;
+            }
+        }
+    }
+
+    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA
+    var client = getXMLHttpRequest();
+    client.open('POST', './backend/read.php', true);
+    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    client.onreadystatechange = function() {
+        if (client.readyState == 4 && client.status == 200) {
+            console.log('[CLIENTE]\n' + client.responseText);
+
+            let productos = JSON.parse(client.responseText);
+
+            // Si el servidor devuelve un arreglo vacío
+            if (productos.length === 0) {
+                alert('No se encontraron productos que coincidan.');
+                return;
+            }
+
+            // Construimos la tabla
+            let template = '';
+            productos.forEach(producto => {
+                let descripcion = `
+                    <li>precio: ${producto.precio}</li>
+                    <li>unidades: ${producto.unidades}</li>
+                    <li>modelo: ${producto.modelo}</li>
+                    <li>marca: ${producto.marca}</li>
+                    <li>detalles: ${producto.detalles}</li>
+                `;
+                template += `
+                    <tr>
+                        <td>${producto.id}</td>
+                        <td>${producto.nombre}</td>
+                        <td><ul>${descripcion}</ul></td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById("productos").innerHTML = template;
+        }
+    };
+
+    // ENVÍA EL PARÁMETRO DE BÚSQUEDA
+    client.send("texto=" + encodeURIComponent(texto));
 }
+
 
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
