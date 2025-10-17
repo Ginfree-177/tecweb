@@ -129,26 +129,92 @@ function buscarProducto(e) {
 function agregarProducto(e) {
     e.preventDefault();
 
-    // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
     var productoJsonString = document.getElementById('description').value;
-    // SE CONVIERTE EL JSON DE STRING A OBJETO
-    var finalJSON = JSON.parse(productoJsonString);
-    // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-    finalJSON['nombre'] = document.getElementById('name').value;
-    // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
+    let finalJSON;
 
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+    try {
+        finalJSON = JSON.parse(productoJsonString);
+    } catch (error) {
+        alert("El JSON no tiene un formato válido.");
+        return;
+    }
+
+    finalJSON['nombre'] = document.getElementById('name').value.trim();
+    productoJsonString = JSON.stringify(finalJSON, null, 2);
+
+    // --- VALIDACIONES ---
+    if (finalJSON.nombre.length === 0) {
+        alert("El nombre del producto es obligatorio");
+        return;
+    }
+
+    if (finalJSON.nombre.length > 100) {
+        alert("El nombre del producto debe tener menos de 100 caracteres");
+        return;
+    }
+
+    if (!finalJSON.marca || finalJSON.marca.length === 0) {
+        alert("La marca es un campo obligatorio");
+        return;
+    }
+
+    if (!finalJSON.modelo || finalJSON.modelo.length === 0) {
+        alert("El modelo es un campo obligatorio");
+        return;
+    }
+
+    if (finalJSON.modelo.length > 25) {
+        alert("El modelo debe tener menos de 25 caracteres");
+        return;
+    }
+
+    if (!/^[A-Za-z0-9\- ]+$/.test(finalJSON.modelo)) {
+        alert("El campo Modelo solo puede contener letras, números, espacios o guiones");
+        return;
+    }
+
+    if (finalJSON.precio === "" || isNaN(finalJSON.precio)) {
+        alert("El precio es un campo obligatorio y debe ser un número");
+        return;
+    }
+
+    if (finalJSON.precio < 99.99) {
+        alert("El precio debe ser mayor o igual a 99.99");
+        return;
+    }
+
+    if (finalJSON.detalles && finalJSON.detalles.length > 250) {
+        alert("Los detalles no pueden tener más de 250 caracteres");
+        return;
+    }
+
+    if (finalJSON.unidades === "" || isNaN(finalJSON.unidades)) {
+        alert("Las unidades deben ser un número");
+        return;
+    }
+
+    if (finalJSON.unidades < 0) {
+        alert("El número de unidades debe ser mayor o igual a 0");
+        return;
+    }
+
+    if (!finalJSON.imagen || finalJSON.imagen.trim() === "") {
+        finalJSON.imagen = "img/default.png";
+    }
+
+    // --- ENVÍO AL SERVIDOR ---
     var client = getXMLHttpRequest();
     client.open('POST', './backend/create.php', true);
     client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
     client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
             console.log(client.responseText);
+            alert(client.responseText);
+            //alert("Producto agregado correctamente.");
+            document.getElementById('task-form').reset();
         }
     };
-    client.send(productoJsonString);
+    client.send(JSON.stringify(finalJSON, null, 2));
 }
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR
