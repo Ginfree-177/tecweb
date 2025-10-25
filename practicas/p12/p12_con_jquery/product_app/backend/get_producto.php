@@ -1,12 +1,13 @@
 <?php
-include('database.php'); // tu conexión
+include('database.php');
 
 $q = isset($_GET['q']) ? $_GET['q'] : '';
 
 $sql = "SELECT * FROM productos 
         WHERE eliminado = 0 
         AND (nombre LIKE ? OR descripcion LIKE ?)";
-$stmt = $conn->prepare($sql);
+// Cambia $conn por $conexion
+$stmt = $conexion->prepare($sql);
 $like = "%$q%";
 $stmt->bind_param("ss", $like, $like);
 $stmt->execute();
