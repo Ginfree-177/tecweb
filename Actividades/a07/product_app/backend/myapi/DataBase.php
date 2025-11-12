@@ -1,15 +1,19 @@
-<?php 
-class DataBase{
-        private $conexion;
+<?php
+namespace MyAPI;
 
-        public function DataBase($db, $user, $pass)
-        {
-            $conexion = @mysqli_connect(
-        'localhost',
-        '$user',
-        '$pass',
-        '$db'
+abstract class DataBase {
+    protected $conexion;
+
+    public function __construct($db, $user, $pass) {
+        $this->conexion = @mysqli_connect(
+            "localhost",
+            $user,
+            $pass,
+            $db
         );
+
+        if(!$this->conexion) {
+            die("Error de conexión a la BD: " . mysqli_connect_error());
         }
     }
-?>
+}

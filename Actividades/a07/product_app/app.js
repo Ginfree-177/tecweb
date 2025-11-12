@@ -286,3 +286,43 @@ function limpiarFormulario() {
     $('#unidades').val("");
     $('#imagen').val("");
 }
+
+function buscarProducto(texto) {
+    if (texto.trim() === "") {
+        listarProductos();
+        return;
+    }
+
+    $.ajax({
+        url: './backend/product-search.php',
+        type: 'GET',
+        data: { search: texto },
+        dataType: 'json',
+        success: function (productos) {
+            let template = "";
+
+            productos.forEach(prod => {
+                template += `
+                    <tr>
+                        <td>${prod.id}</td>
+                        <td>${prod.nombre}</td>
+                        <td>
+                            <ul>
+                                <li>precio: $${prod.precio}</li>
+                                <li>unidades: ${prod.unidades}</li>
+                                <li>modelo: ${prod.modelo}</li>
+                                <li>marca: ${prod.marca}</li>
+                                <li>detalles: ${prod.detalles}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick="cargarProducto(${prod.id})">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${prod.id})">Eliminar</button>
+                        </td>
+                    </tr>`;
+            });
+
+            $('#products').html(template);
+        }
+    });
+}

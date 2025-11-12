@@ -1,4 +1,12 @@
 <?php
+use MyAPI\Products;
+require_once __DIR__ . "/myapi/Products.php";
+
+$api = new Products("marketzone");
+$api->add((object)$_POST);
+
+echo $api->getData();
+/*
     include_once __DIR__.'/database.php';
 
     // SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
@@ -30,5 +38,5 @@
     }
 
     // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-    echo json_encode($data, JSON_PRETTY_PRINT);
+    echo json_encode($data, JSON_PRETTY_PRINT);*/
 ?>
