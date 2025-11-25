@@ -1,0 +1,16 @@
+{
+    "name": "christian/product_app",
+    "description": "Api de productos",
+    "autoload": {
+        "psr-4": {
+            "TECWEB\\MYAPI\\": "backend/myapi/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ginfree",
+            "email": "christian.vazquezloe@alumno.buap.mx"
+        }
+    ],
+    "require": {}
+}
